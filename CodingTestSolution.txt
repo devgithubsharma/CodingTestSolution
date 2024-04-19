@@ -1,7 +1,7 @@
-**Coding Test Solution**
-// Python Code
+*************************************  CODING TEST SOLUTION  *******************************************
+// PYTHON CODE
 
-// Algorithm
+// ALGORITHM
 def can_cross_chakravyuha(enemy_powers, p, a, b):
     """
     Check if Abhimanyu can cross the Chakravyuha.
