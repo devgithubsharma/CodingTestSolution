@@ -1,0 +1,94 @@
+// Coding Test Solution
+// Python Code
+
+// Algorithm
+def can_cross_chakravyuha(enemy_powers, p, a, b):
+    """
+    Check if Abhimanyu can cross the Chakravyuha.
+    
+    :param enemy_powers: List of powers of enemies guarding each circle
+    :param p: Initial power of Abhimanyu
+    :param a: Number of times Abhimanyu can skip the battle
+    :param b: Number of times Abhimanyu can recharge
+    :return: Boolean indicating if Abhimanyu can cross the Chakravyuha
+    """
+  
+    total_power_of_abhimanyu = p * b   # Total power of abhimanyu can have after using its all recharging capacity
+    
+    for i in range(1,12):    # list 'enemy_powers' is treated as 1-indexed
+	# Handle special cases for enemies with regeneration powers
+
+	if i==3 or i==7:
+	    if total_power_of_abhimanyu < enemy_powers[i] + 0.5*enemy_powers[i]: 
+		return False
+		
+	    else:
+		total_power_of_abhimanyu = total_power_of_abhimanyu -  enemy_powers[i]
+
+	# Handle the next circle after the regenerating enemies
+
+	elif i==4 or i==8:
+	    if total_power_of_abhimanyu >= enemy_powers[i]:
+		total_power_of_abhimanyu = total_power_of_abhimanyu -  enemy_powers[i] - 0.5 * enemy_powers[i-1]
+		
+	    else:
+		if a>=1:
+		   a-=1
+		else:
+		   return False
+	else:
+	    if total_power_of_abhimanyu >= enemy_powers[i]:
+		total_power_of_abhimanyu = total_power_of_abhimanyu - enemy_powers[i]
+	    else:
+		if(a>=1):
+		    a-=1
+		else:
+		    return False
+
+    return True
+
+
+# Test Cases :- 
+
+=> Test Case-1 
+ 
+enemy_powers = [10, 20, 15, 25, 30, 35, 20, 40, 45, 50, 55]
+p = 150
+a = 2
+b = 2
+
+result :- True
+
+=> Test Case-2
+enemy_powers  = [15, 30, 35, 40, 80, 90, 95, 100, 50, 60, 75]
+p = 50
+a = 2
+b = 1
+
+result :- False
+
+=> Test Case-3 
+enemy_powers = [10, 15, 16, 75, 9, 17, 12, 8, 5, 6, 2]
+p = 60
+a = 1
+b = 2
+
+result :- True
+
+=> Test Case-4
+enemy_powers = [10, 15, 16, 11, 9, 17, 12, 20, 50, 25,20]
+p = 70
+a = 1
+b = 2
+
+result :- False
+
+
+
+
+
+    
+
+
+
+
